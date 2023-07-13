@@ -7,32 +7,33 @@ const User = require('../models/userModel')
 const getTasks = asyncHandler(async (req, res) => {
   const task = await Task.find({ user: req.user.id })
 
-  res.status(200).json(tasks)
+  res.status(200).json(task)
 })
 
 
-const setTask = asyncHandler(async (req, res) => {
-  if (!req.body.description) {
-    res.status(400)
-    throw new Error('Please add a description')
-  }
+const setTask = async (req, res) => {
+  // if (!req.body.description) {
+  //   res.status(400)
+  //   throw new Error('Please add a description')
+  // }
 
   const task = await Task.create({
-    user: req.user.id,
-    teamSize: req.body.teamSize,
-    budget: req.body.budget,
-    workload: req.body.workload,
-    completionTime: req.body.completionTime,
     description: req.body.description,
-    complete: req.body.complete,
-    personAssigned: req.body.personAssigned,
-    dueDate: req.body.dueDate,
-    estimatedDuration: req.body.estimatedDuration
+    // user: req.user.id,
+    // teamSize: req.body.teamSize,
+    // budget: req.body.budget,
+    // workload: req.body.workload,
+    // completionTime: req.body.completionTime,
+    // description: req.body.description,
+    // complete: req.body.complete,
+    // personAssigned: req.body.personAssigned,
+    // dueDate: req.body.dueDate,
+    // estimatedDuration: req.body.estimatedDuration
 
   })
 
   res.status(200).json(task)
-})
+}
 
 
 const updateTask = asyncHandler(async (req, res) => {

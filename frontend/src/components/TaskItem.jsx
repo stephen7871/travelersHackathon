@@ -7,7 +7,7 @@ function TaskItem({ task }) {
   return (
     <div className='goal'>
       <div>{new Date(task.createdAt).toLocaleString('en-US')}</div>
-      <h2>{task.text}</h2>
+      <h2>{task.description}</h2>
       <button onClick={() => dispatch(deleteTask(task._id))} className='close'>
         X
       </button>

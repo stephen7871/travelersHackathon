@@ -1,17 +1,49 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
-import { createTask } from '../features/task/taskSlice'
+import { createTask } from '../features/tasks/taskSlice'
+import axios from 'axios'
+
+const API_URL = '/api/tasks/'
 
 function TaskForm() {
-  const [text, setText] = useState('')
+  const [formData, setFormData] = useState({description: ''})
 
   const dispatch = useDispatch()
 
-  const onSubmit = (e) => {
+  const onSubmit = async (e) => {
     e.preventDefault()
-
-    dispatch(createTask({ text }))
-    setText('')
+    console.log(formData);
+    const config = {
+      headers: {
+        // Authorization: `Bearer ${token}`,
+        'Content-Type': 'multipart/form-data',
+        'accept' : 'application/json'
+      },
+    }
+    const formdata = new FormData();
+    console.log(formData.description);
+    formdata.append("description", formData.description)
+    await fetch('/posts',{
+    method: "POST",
+      headers: {
+        // Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    body: JSON.stringify({})
+    
+    }
+    
+    );
+    // const {response} = await axios.post('/posts',
+    //   formdata, {
+    //   headers: {
+    //     // Authorization: `Bearer ${token}`,
+    //     'Content-Type': 'multipart/form-data',
+    //     'accept' : 'application/json'
+    //   }}
+    //   )
+    // dispatch(createTask({ formData }))
+    setFormData({description: ''})
   }
 
   return (
@@ -21,10 +53,10 @@ function TaskForm() {
           <label htmlFor='text'>Task</label>
           <input
             type='text'
-            name='text'
-            id='text'
-            value={text}
-            onChange={(e) => setText(e.target.value)}
+            name='description'
+            id='descriptiton'
+            value={formData.description}
+            onChange={(e) => setFormData({...formData, description: e.target.value})}
           />
         </div>
         <div className='form-group'>
