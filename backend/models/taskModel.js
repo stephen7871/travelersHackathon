@@ -9,39 +9,39 @@ const taskSchema = mongoose.Schema(
     },
     teamSize: {
       type: Number,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
-    Budget: {
+    budget: {
       type: Number,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
-    Workload: {
+    workload: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     completionTime: {
       type: Number,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     description: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     complete: {
       type: Number,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     personAssigned: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     dueDate: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
     estimatedDuration: {
       type: String,
-      required: [true, 'Please add a text value'],
+      required: true,
     },
   },
   {

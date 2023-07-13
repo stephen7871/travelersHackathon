@@ -3,41 +3,44 @@ const asyncHandler = require('express-async-handler')
 const Task = require('../models/taskModel')
 const User = require('../models/userModel')
 
-// @desc    Get goals
-// @route   GET /api/goals
-// @access  Private
-const setGoals = asyncHandler(async (req, res) => {
+
+const getTasks = asyncHandler(async (req, res) => {
   const task = await Task.find({ user: req.user.id })
 
-  res.status(200).json(goals)
+  res.status(200).json(tasks)
 })
 
-// @desc    Set goal
-// @route   POST /api/goals
-// @access  Private
+
 const setTask = asyncHandler(async (req, res) => {
-  if (!req.body.text) {
+  if (!req.body.description) {
     res.status(400)
-    throw new Error('Please add a text field')
+    throw new Error('Please add a description')
   }
 
   const task = await Task.create({
-    text: req.body.text,
     user: req.user.id,
+    teamSize: req.body.teamSize,
+    budget: req.body.budget,
+    workload: req.body.workload,
+    completionTime: req.body.completionTime,
+    description: req.body.description,
+    complete: req.body.complete,
+    personAssigned: req.body.personAssigned,
+    dueDate: req.body.dueDate,
+    estimatedDuration: req.body.estimatedDuration
+
   })
 
   res.status(200).json(task)
 })
 
-// @desc    Update goal
-// @route   PUT /api/goals/:id
-// @access  Private
+
 const updateTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(req.params.id)
 
   if (!task) {
     res.status(400)
-    throw new Error('Goal not found')
+    throw new Error('Task not found')
   }
 
   // Check for user
@@ -46,28 +49,28 @@ const updateTask = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 
-  // Make sure the logged in user matches the goal user
+  // Make sure the logged in user matches the task user
   if (task.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error('User not authorized')
   }
 
-  const updatedGoal = await Goal.findByIdAndUpdate(req.params.id, req.body, {
+  const updatedTask = await Task.findByIdAndUpdate(req.params.id, req.body, {
     new: true,
   })
 
-  res.status(200).json(updatedGoal)
+  res.status(200).json(updatedTask)
 })
 
-// @desc    Delete goal
-// @route   DELETE /api/goals/:id
+// @desc    Delete task
+// @route   DELETE /api/tasks/:id
 // @access  Private
-const deleteGoal = asyncHandler(async (req, res) => {
-  const goal = await Goal.findById(req.params.id)
+const deleteTask = asyncHandler(async (req, res) => {
+  const task = await Task.findById(req.params.id)
 
-  if (!goal) {
+  if (!task) {
     res.status(400)
-    throw new Error('Goal not found')
+    throw new Error('task not found')
   }
 
   // Check for user
@@ -76,20 +79,20 @@ const deleteGoal = asyncHandler(async (req, res) => {
     throw new Error('User not found')
   }
 
-  // Make sure the logged in user matches the goal user
-  if (goal.user.toString() !== req.user.id) {
+  // Make sure the logged in user matches the task user
+  if (task.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error('User not authorized')
   }
 
-  await goal.remove()
+  await task.remove()
 
   res.status(200).json({ id: req.params.id })
 })
 
 module.exports = {
-  getGoals,
-  setGoal,
-  updateGoal,
-  deleteGoal,
+  getTasks,
+  setTask,
+  updateTask,
+  deleteTask,
 }
