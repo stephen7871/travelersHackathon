@@ -1,194 +1,162 @@
-// const express = require("express");
-import express from 'express';
-//const connectDB = require("./config/db");
-import bodyParser from 'body-parser';
-import mongoose from 'mongoose';
-import cors from 'cors';
 
-import PostRoutes from './routes/PostRoute.js';
-//const dotenv = require("dotenv");
-//const userRoutes = require("./routes/userRoutes");
+const express = require("express");
+const app = express()
+const cors = require('cors');
+const mongoose = require("mongoose");
 
-import userRoutes from './routes/userRoutes.js';
+app.listen(5000, () => console.log("Server is running"));
+mongoose.connect(
+    "mongodb+srv://stephenmcn787:8PL7BWtaGOHiQnYP@cluster0.oivfgyf.mongodb.net/?retryWrites=true&w=majority",
+    {
+        useNewURLparser:true,
+        useUnifiedTopology:true
+    }
+);
 
-// const chatRoutes = require("./routes/chatRoutes");
-// const messageRoutes = require("./routes/messageRoutes");
+app.use(cors({origin: true, credentials: true, }));
+   
 
-// const PostRoute = require("./routes/PostRoute");
-//const { notFound, errorHandler } = require("./middleware/errorMiddleware");
-//const path = require("path");
-const app = express();
+const planetsSchema = new mongoose.Schema({
+  id: Number,
+  climate: String,
+  surface_water: String,
+  name: String,
+  diameter: String,
+  rotation_period:String,
+  terrain: String,
+  gravity: String,
+  orbital_period: String,
+  population: String
+});
 
-app.use(bodyParser.json({ limit: '30mb', extended: true }))
-app.use(bodyParser.urlencoded({ limit: '30mb', extended: true }))
-app.use(cors());
-
-const CONNECTION_URL = 'mongodb+srv://sdpuser:sdproject14@cluster0.l70xbbe.mongodb.net/?retryWritesn=true&w=majority';
-const PORT = process.env.PORT|| 5001;
-
-mongoose.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => app.listen(PORT, () => console.log(`Server Running on Port: http://localhost:${PORT}`)))
-  .catch((error) => console.log(`${error} did not connect`));
-
-mongoose.set('useFindAndModify', false);
-
-//dotenv.config();
-//connectDB();
+const planets = mongoose.model('planets', planetsSchema);
 
 
- // to accept json data
+app.get("/planets", async (request, response) => {
+  const users = await planets.find({});
 
-// app.get("/", (req, res) => {
-//   res.send("API Running!");
+  try {
+    response.send(users);
+  } catch (error) {
+    response.status(500).send(error);
+  }
+});
+
+
+
+
+
+// planets.insertMany(json).then(function(){
+//   console.log("Data inserted")  // Success
+// }).catch(function(error){
+//   console.log(error)      // Failure
 // });
-// app.use("/posts", postRoutes);
-app.use("/posts", PostRoutes);
-app.use("/api/user", userRoutes);
-// app.use("/api/chat", chatRoutes);
-// app.use("/api/message", messageRoutes);
 
 
-// const __dirname1 = path.resolve();
+// for(let i = 0; i < json.length; i++) {
+//   let obj = json[i];
 
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname1, "/frontend/build")));
-
-//   app.get("*", (req, res) =>
-//     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
-//   );
-// } else {
-//   app.get("/", (req, res) => {
-//     res.send("API is running..");
-//   });
+//   console.log(obj.id);
 // }
 
-// --------------------------deployment------------------------------
 
-// Error Handling middlewares
-// app.use(notFound);
-// app.use(errorHandler);
+const filmsSchema = new mongoose.Schema({
+    id: Number,
+    producer: String,
+    title: String,
+    episode_id: Number,
+    director: String,
+    release_date:String,
+    opening_crawl: String
+});
 
-// const PORT = process.env.PORT;
+const films = mongoose.model('films', filmsSchema);
 
-// const server = app.listen(
-//   PORT,
-//   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
-// );
-
-
-// const io = require("socket.io")(server, {
-//   pingTimeout: 60000,
-//   cors: {
-//     origin: ["http://localhost:3000","http://localhost:5001/posts"]
-    // credentials: true,
-//   },
-// });
-
-// io.on("connection", (socket) => {
-//   console.log("Connected to socket.io");
-//   socket.on("setup", (userData) => {
-//     socket.join(userData._id);
-//     socket.emit("connected");
-//   });
-
-//   socket.on("join chat", (room) => {
-//     socket.join(room);
-//     console.log("User Joined Room: " + room);
-//   });
-//   socket.on("typing", (room) => socket.in(room).emit("typing"));
-//   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
-
-//   socket.on("new message", (newMessageRecieved) => {
-//     var chat = newMessageRecieved.chat;
-
-//     if (!chat.users) return console.log("chat.users not defined");
-
-//     chat.users.forEach((user) => {
-//       if (user._id == newMessageRecieved.sender._id) return;
-
-//       socket.in(user._id).emit("message recieved", newMessageRecieved);
-//     });
-//   });
-
-//   socket.off("setup", () => {
-//     console.log("USER DISCONNECTED");
-//     socket.leave(userData._id);
-//   });
-// });
+app.get("/films", async (request, response) => {
+    const users = await films.find({});
+  
+    try {
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
 
 
-// app.use((req, res, next) => {
-//   res.header('Access-Control-Allow-Origin', '*');
-//   next();
-// });
-
-// --------------------------deployment------------------------------
-
-// const __dirname1 = path.resolve();
-
-// if (process.env.NODE_ENV === "production") {
-//   app.use(express.static(path.join(__dirname1, "/frontend/build")));
-
-//   app.get("*", (req, res) =>
-//     res.sendFile(path.resolve(__dirname1, "frontend", "build", "index.html"))
-//   );
-// } else {
-//   app.get("/", (req, res) => {
-//     res.send("API is running..");
-//   });
-// }
-
-// // --------------------------deployment------------------------------
-
-// // Error Handling middlewares
-// app.use(notFound);
-// app.use(errorHandler);
-
-// const PORT = process.env.PORT;
-
- 
-
-// const io = require("socket.io")(app.listen(
-//   PORT,
-//   console.log(`Server running on PORT ${PORT}...`.yellow.bold)
-// ), {
-//   pingTimeout: 60000,
-//   cors: {
-//     origin: ["http://localhost:3000","http://localhost:5000"],
-//     credentials: true,
 
 
-//   },
-// });
 
-// io.on("connection", (socket) => {
-//   console.log("Connected to socket.io");
-//   socket.on("setup", (userData) => {
-//     socket.join(userData._id);
-//     socket.emit("connected");
-//   });
 
-//   socket.on("join chat", (room) => {
-//     socket.join(room);
-//     console.log("User Joined Room: " + room);
-//   });
-//   socket.on("typing", (room) => socket.in(room).emit("typing"));
-//   socket.on("stop typing", (room) => socket.in(room).emit("stop typing"));
+  const charactersSchema = new mongoose.Schema({
+    id: Number,
+    name: String,
+    gender: String,
+    skin_color: String,
+    hair_color: String,
+    height:String,
+    eye_color: String,
+    mass: String,
+    homeWorld: Number,
+    birth_year: String
+});
 
-//   socket.on("new message", (newMessageRecieved) => {
-//     var chat = newMessageRecieved.chat;
+const characters = mongoose.model('characters', charactersSchema);
 
-//     if (!chat.users) return console.log("chat.users not defined");
+app.get("/characters", async (request, response) => {
+    const users = await characters.find({});
 
-//     chat.users.forEach((user) => {
-//       if (user._id == newMessageRecieved.sender._id) return;
+    try {
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
 
-//       socket.in(user._id).emit("message recieved", newMessageRecieved);
-//     });
-//   });
+  const router = express.Router()
 
-//   socket.off("setup", () => {
-//     console.log("USER DISCONNECTED");
-//     socket.leave(userData._id);
-//   });
-// });
+  app.get("/characters/:id", async (request, response) => {
+    const {id} = request.params;
+    const character = await characters.findById(id);
+    console.log(character);
+
+    try {
+      response.send(character);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+
+  const films_charactersSchema = new mongoose.Schema({
+    film_id: Number,
+    Character_id: Number
+});
+
+const films_characters = mongoose.model('films_characters', films_charactersSchema);
+
+app.get("/films_characters", async (request, response) => {
+    const users = await films_characters.find({});
+  
+    try {
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
+
+  const films_planetsSchema = new mongoose.Schema({
+    film_id: Number,
+    planet_id: Number
+});
+
+const films_planets = mongoose.model('films_planets', films_planetsSchema);
+
+app.get("/films_planets", async (request, response) => {
+    const users = await films_planets.find({});
+  
+    try {
+      response.send(users);
+    } catch (error) {
+      response.status(500).send(error);
+    }
+  });
