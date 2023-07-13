@@ -1,28 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
-import Home from './Home';
-import Character from './Character';
-import Planet from './Planet';
-import Film from './Film';
-
-
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
+import Header from './components/Header'
+import Dashboard from './pages/Dashboard'
+import Login from './pages/Login'
+import Register from './pages/Register'
 
 function App() {
   return (
-    <div className="App">
+    <>
       <Router>
-      <Routes>
-        <Route path='/' exact Component={Home}/>
-        <Route path='/characters/:id' exact Component={Character}/> 
-        <Route path='/films/:id' exact Component={Film}/>
-        <Route path='/planets/:id' exact Component={Planet}/>
-      </Routes>
+        <div className='container'>
+          <Header />
+          <Routes>
+            <Route path='/' element={<Dashboard />} />
+            <Route path='/login' element={<Login />} />
+            <Route path='/register' element={<Register />} />
+          </Routes>
+        </div>
       </Router>
-    
-    </div>
-  );
+      <ToastContainer />
+    </>
+  )
 }
 
-export default App;
+export default App
