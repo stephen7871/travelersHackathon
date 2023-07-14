@@ -1,6 +1,6 @@
 import axios from 'axios'
 import { useSelector, useDispatch } from 'react-redux'
-const API_URL = '/api/tasks/'
+const API_URL = '/posts/'
 
 
 
