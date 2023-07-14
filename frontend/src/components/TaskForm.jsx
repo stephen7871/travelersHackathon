@@ -12,7 +12,7 @@ function TaskForm() {
 
   const onSubmit = async (e) => {
     e.preventDefault()
-    console.log(formData);
+    // console.log(formData);
     const config = {
       headers: {
         // Authorization: `Bearer ${token}`,
@@ -21,8 +21,8 @@ function TaskForm() {
       },
     }
     const formdata = new FormData();
-    console.log(formData.description);
-    console.log(user?._id);
+    // console.log(formData.description);
+    // console.log(user?._id);
     formdata.append("description", formData.description)
     // const username = localStorage.getItem('user');
     await fetch('/posts',{
@@ -31,7 +31,7 @@ function TaskForm() {
         // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    body: JSON.stringify({description: formData.description, username: user._id})
+    body: JSON.stringify({description: formData.description, username: user?._id})
     
     }
     

@@ -1,6 +1,8 @@
 import axios from 'axios'
-
+import { useSelector, useDispatch } from 'react-redux'
 const API_URL = '/api/tasks/'
+
+
 
 
 const createTask = async (taskData, token) => {
@@ -12,7 +14,7 @@ const createTask = async (taskData, token) => {
     },
   }
   const formdata = new FormData();
-  console.log(taskData.description);
+  // console.log(taskData.description);
   formdata.append("description", taskData.description)
   const {response} = await axios.post(API_URL, 
     
@@ -28,9 +30,13 @@ const getTasks = async (token) => {
       Authorization: `Bearer ${token}`,
     },
   }
+  const user = JSON.parse(localStorage.getItem('user'));
+  const response = await axios.get(`/posts`,{
+    params:{ username: user._id
 
-  const response = await axios.get('/posts', config)
-  console.log(JSON.stringify(response.data) + "task services");
+    },
+  }, config)
+  // console.log(JSON.stringify(response.data) + "task services");
 
   return response.data
 }

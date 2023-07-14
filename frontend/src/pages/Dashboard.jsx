@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import TaskForm from '../components/TaskForm'
@@ -14,6 +14,7 @@ function Dashboard() {
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
   )
+  const [posts, setPosts] = useState([])
 
   useEffect(() => {
     if (isError) {
@@ -24,9 +25,20 @@ function Dashboard() {
       navigate('/login')
     }
 
+    const getPosts = async(user) =>{
+      // const data = (await fetch(`posts/?id=${user._id}`)).json();
+      // console.log(JSON.stringify(data))
+      // setPosts(data);
+      await fetch(`posts/?id=${user?.email}`)
+      .then(res => res.json())
+      .then(text => setPosts(text));
+    }
+
+    console.log(JSON.stringify(user?.email) + "dashbord")
+    getPosts(user);
     //dispatch(getTasks(user))
-    console.log(user.email + 'Dashboard');
-    dispatch(getTasks())
+    // console.log(user.email + 'Dashboard');
+    // dispatch(getTasks())
     // const response = await fetch('/posts/',{
     //   method: "GET",
     //     headers: {
@@ -48,14 +60,15 @@ function Dashboard() {
   }
 
   function TaskReturn({task}){
-    if(task.user === user._id){
+    if(task.user === user?._id){
+      console.log(task + "taskReturn");
     return<TaskItem key={task._id} task={task} />
     }
     else{
       return<div></div>
     }
   }
-
+  
   return (
     <>
       <section className='heading'>
@@ -66,9 +79,9 @@ function Dashboard() {
       <TaskForm />
 
       <section className='content'>
-        {tasks.length > 0 ? (
+        {posts?.length > 0 ? (
           <div className='goals'>
-            {tasks.map((task) => (
+            {posts.map((task) => (
 
             <TaskReturn key={task._id} task={task}/>
           

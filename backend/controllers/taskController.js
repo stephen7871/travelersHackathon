@@ -6,9 +6,13 @@ const User = require('../models/userModel')
 
 const getTasks = asyncHandler(async (req, res) => {
   // const task = await Task.find({ user: req.user?.id })
-  const task = await Task.find({  })
+  
+  const task = await Task.find({ user: req.query.id  })
+  console.log("here");
+  console.log(JSON.stringify(req.query.id));
+  console.log(JSON.stringify(task))
   // const task = await Task.find({ user: req.data.usename })
-  res.status(200).json(task)
+  res.json(task)
 })
 
 
@@ -20,16 +24,16 @@ const setTask = async (req, res) => {
 
   const task = await Task.create({
     description: req.body.description,
-    user: req.body.username
-    // teamSize: req.body.teamSize,
-    // budget: req.body.budget,
-    // workload: req.body.workload,
-    // completionTime: req.body.completionTime,
-    // description: req.body.description,
-    // complete: req.body.complete,
-    // personAssigned: req.body.personAssigned,
-    // dueDate: req.body.dueDate,
-    // estimatedDuration: req.body.estimatedDuration
+    user: req.body.username,
+    teamSize: 2,
+    budget: 1000,
+    workload: "high",
+    completionTime: 4,
+    
+    complete: 1,
+    personAssigned: "bob",
+    dueDate: "10/12/21",
+    estimatedDuration: "2 days"
 
   })
 

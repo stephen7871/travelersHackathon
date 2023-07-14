@@ -17,7 +17,7 @@ export const createTask = createAsyncThunk(
       const token = thunkAPI.getState().auth.user.token
       return await taskService.createTask(taskData, token)
     } catch (error) {
-      console.log("here");
+    
       const message =
         (error.response &&
           error.response.data &&
@@ -109,7 +109,7 @@ export const taskSlice = createSlice({
         state.isLoading = false
         state.isSuccess = true
         state.tasks = state.tasks.filter(
-          (task) => task._id !== action.payload.id
+          (task) => task?._id !== action.payload.id
         )
       })
       .addCase(deleteTask.rejected, (state, action) => {
