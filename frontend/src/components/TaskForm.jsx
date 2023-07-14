@@ -31,7 +31,7 @@ function TaskForm() {
         // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    body: JSON.stringify({description: formData.description, username: user?._id})
+    body: JSON.stringify({description: formData.description, username: user?.email})
     
     }
     
@@ -52,8 +52,16 @@ function TaskForm() {
     <section className='form'>
       <form onSubmit={onSubmit}>
         <div className='form-group'>
-          <label htmlFor='text'>Task</label>
-          <input
+          <label htmlFor='text'>Task search by description</label>
+          {/* <input
+            type='text'
+            name='description'
+            id='descriptiton'
+            value={formData.description}
+            onChange={(e) => setFormData({...formData, description: e.target.value})}
+          /> */}
+
+            <input
             type='text'
             name='description'
             id='descriptiton'

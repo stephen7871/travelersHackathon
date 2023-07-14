@@ -9,7 +9,7 @@ import { getTasks, reset } from '../features/tasks/taskSlice'
 function Dashboard() {
   const navigate = useNavigate()
   const dispatch = useDispatch()
-
+  const [formData, setFormData] = useState({description: '',teamSize: '',budget:'',workLoad:''})
   const { user } = useSelector((state) => state.auth)
   const { tasks, isLoading, isError, message } = useSelector(
     (state) => state.tasks
@@ -68,7 +68,18 @@ function Dashboard() {
       return<div></div>
     }
   }
-  
+  const onSubmit = async (e) => {
+    e.preventDefault()
+    
+
+    await fetch(`posts/?id=${formData.description}`)
+    .then(res => res.json())
+    .then(text => setPosts(text));
+    window.location.reload(true);
+    setFormData({description: ''})
+  }
+
+
   return (
     <>
       <section className='heading'>
@@ -76,14 +87,40 @@ function Dashboard() {
         <p>Tasks Dashboard</p>
       </section>
 
-      <TaskForm />
+      <section className='form'>
+      <form onSubmit={onSubmit}>
+        <div className='form-group'>
+          <label htmlFor='text'>Task search by description</label>
+          {/* <input
+            type='text'
+            name='description'
+            id='descriptiton'
+            value={formData.description}
+            onChange={(e) => setFormData({...formData, description: e.target.value})}
+          /> */}
+
+            <input
+            type='text'
+            name='description'
+            id='descriptiton'
+            value={formData.description}
+            onChange={(e) => setFormData({...formData, description: e.target.value})}
+          />
+        </div>
+        <div className='form-group'>
+          <button className='btn btn-block' type='submit'>
+            Add task
+          </button>
+        </div>
+      </form>
+    </section>
 
       <section className='content'>
         {posts?.length > 0 ? (
           <div className='goals'>
             {posts.map((task) => (
 
-            <TaskReturn key={task._id} task={task}/>
+<TaskItem key={task._id} task={task} />
           
           
           )
