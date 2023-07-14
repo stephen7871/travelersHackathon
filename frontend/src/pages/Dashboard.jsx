@@ -68,52 +68,15 @@ function Dashboard() {
       return<div></div>
     }
   }
-  const onSubmit = async (e) => {
-    e.preventDefault()
-    
-
-    await fetch(`posts/?id=${formData.description}`)
-    .then(res => res.json())
-    .then(text => setPosts(text));
-    window.location.reload(true);
-    setFormData({description: ''})
-  }
-
-
+  
   return (
     <>
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
-        <p>Tasks Dashboard</p>
+        <p>add a tasks bellow</p>
       </section>
 
-      <section className='form'>
-      <form onSubmit={onSubmit}>
-        <div className='form-group'>
-          <label htmlFor='text'>Task search by description</label>
-          {/* <input
-            type='text'
-            name='description'
-            id='descriptiton'
-            value={formData.description}
-            onChange={(e) => setFormData({...formData, description: e.target.value})}
-          /> */}
-
-            <input
-            type='text'
-            name='description'
-            id='descriptiton'
-            value={formData.description}
-            onChange={(e) => setFormData({...formData, description: e.target.value})}
-          />
-        </div>
-        <div className='form-group'>
-          <button className='btn btn-block' type='submit'>
-            Add task
-          </button>
-        </div>
-      </form>
-    </section>
+      <TaskForm />
 
       <section className='content'>
         {posts?.length > 0 ? (

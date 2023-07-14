@@ -21,19 +21,19 @@ const setTask = async (req, res) => {
   //   res.status(400)
   //   throw new Error('Please add a description')
   // }
-
+  console.log();
   const task = await Task.create({
     description: req.body.description,
     user: req.body.username,
-    teamSize: 2,
-    budget: 1000,
-    workload: "high",
-    completionTime: 4,
+    teamSize: req.body.teamSize,
+    budget: req.body.budget,
+    workload: req.body.workload,
+    completionTime: req.body.completionTime,
     
-    complete: 1,
-    personAssigned: "bob",
-    dueDate: "10/12/21",
-    estimatedDuration: "2 days"
+    complete: req.body.complete,
+    personAssigned: req.body.personAssigned,
+    dueDate: req.body.dueDate,
+    estimatedDuration: req.body.estimatedDuration
 
   })
 
@@ -73,7 +73,7 @@ const updateTask = asyncHandler(async (req, res) => {
 // @access  Private
 const deleteTask = asyncHandler(async (req, res) => {
   const task = await Task.findById(req.params.id)
-
+  console.log("delete called" + JSON.stringify(req.params.id));
   if (!task) {
     res.status(400)
     throw new Error('task not found')
