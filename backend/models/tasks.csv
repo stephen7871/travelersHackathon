@@ -1,11 +1,11 @@
 user,teamSize,Budget,Workload,completionTime,description,complete,personAssigned,dueDate,estimatedDuration
-2,4,7485,1,80,create a presentation,0,Ellie Long,next year,4 week
-1,5,50887,2,68,create a presentation,1,Zoe Foster,next week,4 hours
-2,8,8572,1,25,create a presentation,0,Allison Barnes,next year,72 hours
-3,2,96061,1,4,design a website,0,Aria Cox,next week,1 week
-3,7,57172,2,29,create a presentation,0,Lillian Simmons,tomorrow,1 hour
-3,10,94341,1,97,build a mobile app,1,Hailey Hughes,today,72 hours
-2,1,47392,1,98,create a presentation,0,Hailey Hughes,tomorrow,1 week
-1,2,93420,3,25,build a mobile app,0,Madelyn Russell,next year,6 hours
-1,7,13933,3,38,write a blog post,0,Elijah Thomas,tomorrow,4 hours
-3,3,2047,2,9,write a blog post,1,Alexander Garcia,next month,12 hours
+s@gmail.com,1,99903,3,66,design a website,1,Leah Ross,tomorrow,24 hours
+me@123,4,90580,2,38,write a blog post,1,Naomi Hayes,today,2 week
+s@gmail.com,7,27469,3,32,build a mobile app,1,Lyla Sanders,next week,2 week
+me@123,9,61721,2,76,design a website,1,Evelyn Evans,next week,6 hours
+me@123,1,20302,2,63,build a mobile app,0,Evelyn Evans,next year,3 hours
+bob@gmail.com,6,14973,2,19,write a blog post,1,Leighton Peterson,today,4 week
+me@123,6,37526,3,8,design a website,0,Eliza Reed,next week,72 hours
+me@123,4,60339,2,89,create a presentation,1,Madeline Thompson,tomorrow,2 hours
+bob@gmail.com,2,95404,3,9,write a blog post,1,Harper White,next week,4 hours
+s@gmail.com,3,19721,2,1,design a website,0,Owen Roberts,next month,4 week
