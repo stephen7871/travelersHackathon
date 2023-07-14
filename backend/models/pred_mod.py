@@ -1,38 +1,31 @@
+import numpy as np
 import pandas as pd
+
 from sklearn.linear_model import LinearRegression
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
-from sklearn.metrics import mean_squared_error
 
-# Load the data from the CSV file
+# Read in the file 
 df = pd.read_csv('tasks.csv')
+df.head()
+print(df)
 
-# Select the features and target variable
-features = ['estimatedDuration', 'Workload']
-print(df[features])
-target = 'completionTime'
-X = df[features]  # Features
-y = df[target]  # Target variable
-print(y)
+# Choosing the features and the target
+features = ['teamSize', 'Budget']
+X = df[features]  # Features => teamSize, Budget.
+y = df['completionTime']     # Target => completionTime
+y2 = df['estimatedDuration']
 
-# Convert categorical features to numeric using one-hot encoding
-X_encoded = pd.get_dummies(X)
+y2_encod = pd.get_dummies(y2)
 
-# Split the data into training and test sets
-X_train, X_test, y_train, y_test = train_test_split(X_encoded, y, test_size=0.2, random_state=42)
+print(y2_encod)
 
-# Create a decision tree classifier
-model = DecisionTreeClassifier()
+# random_state => seed value used by random number generator
+X_train, X_test, y2_encod_train, y2_encod_test = train_test_split(X, y2_encod, test_size=0.3, random_state=0)
 
-# Fit the model to the training data
-model.fit(X_train, y_train)
+#Implement the classifer
+model = LinearRegression()
+model.fit(X_train, y2_encod_train)
 
-# Make predictions on the test set
-y_pred = model.predict(X_test)
-
-# Evaluate the model's performance
-mse = mean_squared_error(y_test, y_pred)
-print('Mean Squared Error:', mse)
-
-# Print the estimated time.
-print(y_pred)
+#come out with the prediction
+predictions = model.predict(X_test)
+print(predictions)
