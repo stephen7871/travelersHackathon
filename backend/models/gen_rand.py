@@ -114,7 +114,7 @@ for i in range(10):
   task['user'] = random.randint(1,3)
   task['teamSize'] = random.randint(1, 10)
   task['Budget'] = random.randint(1, 100000)
-  task['Workload'] = random.choice(['low', 'medium', 'high'])
+  task['Workload'] = random.randint(1,3)
   task['completionTime'] = random.randint(1, 100)
   task['description'] = random.choice(['write a blog post', 'design a website', 'create a presentation', 'build a mobile app'])
   task['complete'] = random.randint(0, 1)

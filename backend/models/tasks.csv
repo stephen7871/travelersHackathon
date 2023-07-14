@@ -1,11 +1,11 @@
 user,teamSize,Budget,Workload,completionTime,description,complete,personAssigned,dueDate,estimatedDuration
-3,5,26400,medium,92,design a website,1,Layla Gray,next year,2 hours
-1,4,67380,low,17,write a blog post,0,Giselle Coleman,next week,6 hours
-1,6,24302,medium,14,build a mobile app,0,Owen Roberts,next year,1 hour
-3,1,97363,medium,42,create a presentation,1,Ava Miller,next year,1 week
-2,5,8002,medium,30,build a mobile app,1,Daniel Lewis,next week,1 hour
-1,7,7886,high,71,create a presentation,0,Ava Miller,today,48 hours
-1,7,60974,high,47,build a mobile app,1,Arianna Collins,tomorrow,6 hours
-1,10,64549,high,93,build a mobile app,0,Valeria Turner,next year,6 hours
-3,7,13030,low,7,write a blog post,1,Savannah Sullivan,next year,1 hour
-3,9,68343,low,21,design a website,0,Eliza Reed,next year,3 hours
+2,4,7485,1,80,create a presentation,0,Ellie Long,next year,4 week
+1,5,50887,2,68,create a presentation,1,Zoe Foster,next week,4 hours
+2,8,8572,1,25,create a presentation,0,Allison Barnes,next year,72 hours
+3,2,96061,1,4,design a website,0,Aria Cox,next week,1 week
+3,7,57172,2,29,create a presentation,0,Lillian Simmons,tomorrow,1 hour
+3,10,94341,1,97,build a mobile app,1,Hailey Hughes,today,72 hours
+2,1,47392,1,98,create a presentation,0,Hailey Hughes,tomorrow,1 week
+1,2,93420,3,25,build a mobile app,0,Madelyn Russell,next year,6 hours
+1,7,13933,3,38,write a blog post,0,Elijah Thomas,tomorrow,4 hours
+3,3,2047,2,9,write a blog post,1,Alexander Garcia,next month,12 hours
