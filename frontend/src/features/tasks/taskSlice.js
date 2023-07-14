@@ -30,8 +30,9 @@ export const createTask = createAsyncThunk(
 )
 
 // Get user tasks
+// 
 export const getTasks = createAsyncThunk(
-  'tasks/getAll',
+  'posts/getAll',
   async (_, thunkAPI) => {
     try {
       const token = thunkAPI.getState().auth.user.token

@@ -30,9 +30,43 @@ const getTasks = async (token) => {
   }
 
   const response = await axios.get('/posts', config)
+  console.log(JSON.stringify(response.data) + "task services");
 
   return response.data
 }
+
+// const getTasks = async (token, user) => {
+//   console.log(user + "taskServices");
+//   const config = {
+//     headers: {
+//       Authorization: `Bearer ${token}`,
+//     },
+//   }
+
+//   const response = await axios.get('/posts', config)
+
+//   return response.data
+// }
+
+// const getTasks = async (user) => {
+//   // const config = {
+//   //   headers: {
+//   //     Authorization: `Bearer ${token}`,
+//   //   },
+//   // }
+//   const response = await fetch('/posts',{
+//     method: "GET",
+//       headers: {
+//         // Authorization: `Bearer ${token}`,
+//         "Content-Type": "application/json",
+//       },
+//     body: JSON.stringify({username: user})
+    
+//     })
+//   // const response = await axios.get('/posts', config)
+
+//   return response.data
+// }
 
 
 const deleteTask = async (taskId, token) => {

@@ -2,12 +2,12 @@ import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { createTask } from '../features/tasks/taskSlice'
 import axios from 'axios'
-
+import { useSelector } from 'react-redux'
 const API_URL = '/api/tasks/'
 
 function TaskForm() {
-  const [formData, setFormData] = useState({description: ''})
-
+  const [formData, setFormData] = useState({description: '',teamSize: '',budget:'',workLoad:''})
+  const { user } = useSelector((state) => state.auth)
   const dispatch = useDispatch()
 
   const onSubmit = async (e) => {
@@ -22,14 +22,16 @@ function TaskForm() {
     }
     const formdata = new FormData();
     console.log(formData.description);
+    console.log(user?._id);
     formdata.append("description", formData.description)
+    // const username = localStorage.getItem('user');
     await fetch('/posts',{
     method: "POST",
       headers: {
         // Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
       },
-    body: JSON.stringify({})
+    body: JSON.stringify({description: formData.description, username: user._id})
     
     }
     
