@@ -61,7 +61,7 @@ function Dashboard() {
 
   function TaskReturn({task}){
     if(task.user === user?._id){
-      console.log(task + "taskReturn");
+      //console.log(task + "taskReturn");
     return<TaskItem key={task._id} task={task} />
     }
     else{
@@ -75,8 +75,16 @@ function Dashboard() {
         <h1>Welcome {user && user.name}</h1>
         <p>add a tasks bellow</p>
       </section>
-
+      {(user?.email === 's@gmail.com') &&
       <TaskForm />
+      }
+      {(user?.email === 'bob@gmail.com') &&
+      <TaskForm />
+      }
+      {(user?.email === 'me@123') &&
+      <TaskForm />
+      }
+      
 
       <section className='content'>
         {posts?.length > 0 ? (

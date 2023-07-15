@@ -19,6 +19,11 @@ app.use(express.urlencoded({ extended: false }));
 app.use('/posts', require('./routes/taskRoutes'));
 app.use('/api/users', require('./routes/userRoutes'));
 
+// app.put('/posts/:id', (req, res) => {
+//     res.send("PUT Request Called")
+// })
+
+
 // Serve frontend
 // if (process.env.NODE_ENV === 'production') {
 //   app.use(express.static(path.join(__dirname, '../frontend/build')));
