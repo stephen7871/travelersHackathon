@@ -113,7 +113,7 @@ const user = [
 
 
 // Generate random data for each task
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 1000; i++) {
   let task = {};
   task.user = user[Math.floor(Math.random() * user.length)]
   task.teamSize = Math.floor(Math.random() * 10) + 1;
