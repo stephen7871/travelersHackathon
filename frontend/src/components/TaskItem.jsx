@@ -16,19 +16,30 @@ function TaskItem({ task }) {
 
   return (
     <div className='goal'>
-      <div>{new Date(task.createdAt).toLocaleString('en-US')}</div>
-      <h2>{task.description}</h2>
-      <p>{task.user}</p>
-      <p>{task.teamSize}</p>
-      <p>{task.Budget}</p>
-      <p>{task.Workload}</p>
-      <p>{task.completionTime}</p>
-      <p>{task.complete}</p>
-      <p>{task.personAssigned}</p>
-      <p>{task.dueDate}</p>
+      
+      <p><b>Team Size:</b> {task.teamSize}</p>
+      <p><b>Budget:</b> ${task.Budget}</p>
+      <p><b>WorkLoad:</b>{task.Workload}</p>
+      <p><b>Completion Time:</b>{task.completionTime}</p>
+
+     
+      <hr color='black'></hr>
+      <h1>task for project</h1>
+      <p><b>Decrption:</b>{task.description}</p>
+      <p><b>complete: </b>{task.complete}</p>
+      <p><b>Person Assigned: </b>{task.personAssigned}</p>
+      <p><b>Due Date:</b>{task.dueDate}</p>
+      <p><b>Estimated Duration: </b>{task.estimatedDuration}</p>
+      
+      
+      
+      
+      
+      
+      
+      
       <p>{task._id}</p>
-      <p>{task.estimatedDuration}</p>
-      <p>{task.estimatedDuration}</p>
+      
 <>
       {(user?.email === 's@gmail.com') &&
       <>

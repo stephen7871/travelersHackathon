@@ -94,7 +94,7 @@ function Dashboard() {
           <div className='goals'>
             {posts.map((task) => (
 
-<TaskItem key={task._id} task={task} />
+<TaskItem key={task?._id} task={task} />
           
           
           )
