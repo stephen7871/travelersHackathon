@@ -134,14 +134,7 @@ function Update({task}) {
             value={formData.complete}
             onChange={(e) => setFormData({...formData, complete: e.target.value})}
           />
-          <label htmlFor='text'>person Assigned</label>
-            <input
-            type='text'
-            name='description'
-            id='descriptiton'
-            value={formData.personAssigned}
-            onChange={(e) => setFormData({...formData, personAssigned: e.target.value})}
-          />
+        
           <label htmlFor='text'>due Date</label>
             <input
             type='text'
