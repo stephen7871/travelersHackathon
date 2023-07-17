@@ -31,19 +31,28 @@ function TaskItem({ task }) {
       <p>{task.estimatedDuration}</p>
 <>
       {(user?.email === 's@gmail.com') &&
-      <button onClick={()=>editThis(task) }className='close'>edit</button>
-
+      <>
+      <button onClick={()=>editThis(task) }>edit</button>
+      
+       <button onClick={()=>dispatch(deleteTask(task._id)) }className='close'>x</button>
+       </> 
       }
       {(user?.email === 'bob@gmail.com') &&
-      <button onClick={()=>editThis(task) }className='close'>edit</button>
-
+      <>
+      <button onClick={()=>editThis(task) }>edit</button>
+      
+       <button onClick={()=>dispatch(deleteTask(task._id)) }className='close'>x</button>
+       </>       
       }
       {(user?.email === 'me@123') &&
-      <button onClick={()=>editThis(task) }className='close'>edit</button>
-
+      <>
+      <button onClick={()=>editThis(task) }>edit</button>
+      
+       <button onClick={()=>dispatch(deleteTask(task._id)) }className='close'>x</button>
+       </> 
       }
       </>
-      {/* <button onClick={()=>dispatch(deleteTask(task._id)) }className='close'>x</button> */}
+      
     </div>
   )
 }

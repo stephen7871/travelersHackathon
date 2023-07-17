@@ -73,10 +73,13 @@ function Dashboard() {
     <>
       <section className='heading'>
         <h1>Welcome {user && user.name}</h1>
-        <p>add a tasks bellow</p>
+        <p>you can only add a project and task if you are a manager</p>
+        
       </section>
       {(user?.email === 's@gmail.com') &&
+      
       <TaskForm />
+
       }
       {(user?.email === 'bob@gmail.com') &&
       <TaskForm />
